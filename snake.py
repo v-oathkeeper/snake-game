@@ -2,8 +2,11 @@ from turtle import Turtle
 DISTANCE = 20
 class Snake:
     def __init__(self):
-        x = 0
         self.segments = []
+        self.create_snake()
+
+    def create_snake(self):
+        x = 0
         for _ in range(3):
             t = Turtle()
             t.shape("square")
@@ -21,6 +24,13 @@ class Snake:
         pos = (self.segments[-1].xcor(), self.segments[-1].ycor())
         t.goto(pos)
         self.segments.append(t)
+
+    def reset(self):
+        for segment in self.segments:
+            segment.goto(1000,1000)
+
+        self.segments.clear()
+        self.create_snake()
 
     def move(self):
         for seg in range(len(self.segments) - 1, 0, -1):
